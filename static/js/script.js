@@ -86,7 +86,7 @@ function handleRecognitionResult(event) {
 let audioElement = new Audio();
 
 function sendTranscriptToBackend(transcript) {
-  const backendUrl = 'http://127.0.0.1:5000/sendString';
+  const backendUrl = 'https://duncanvoiceai.onrender.com/sendString';
 
   const data = { message: transcript };
 
@@ -100,9 +100,8 @@ function sendTranscriptToBackend(transcript) {
   .then(response => response.json())
   .then(result => {
     console.log('Backend response:', result);
-    var msg = new SpeechSynthesisUtterance();
-    msg.text = result.response; // Use the response from the backend
-    window.speechSynthesis.speak(msg);
+    var response = result.response;
+    SayIt(response);
   })
   .catch(error => {
     console.error('Error sending data to backend:', error);
@@ -129,8 +128,8 @@ function sendTranscriptToBackendGetAudio(transcript) {
     .catch(error => console.error('Error:', error));
 }
 
-function SayIt() {
-    var s = "Hello, this is a sample text."; // Replace with the text you want to convert to speech.
+function SayIt(s) {
+    /*var s = "Hello, this is a sample text."; // Replace with the text you want to convert to speech.*/
 
     if (s == "") {
         txtMsg.focus();
