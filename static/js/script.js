@@ -1,4 +1,3 @@
-
 let recognition;
 let isRecording = false;
 let recordedChunks = [];
@@ -10,6 +9,11 @@ const audioPlayer = document.getElementById('audioPlayer');
 const ctx = new AudioContext();
 let audio;
 let audioSource;
+var OPENAI_API_KEY = ${{ secrets.YOUR_SECRET_NAME }};
+var ELEVEN_LABS_API_KEY = "ebc13dfa297853586372a1acf0b80c1b";
+var sVoiceId = "21m00Tcm4TlvDq8ikWAM"; // Rachel
+var bSpeechInProgress = false;
+var oSpeechRecognizer = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   const playBtn = document.getElementById('playBtn');
@@ -123,6 +127,54 @@ function sendTranscriptToBackendGetAudio(transcript) {
         }
     })
     .catch(error => console.error('Error:', error));
+}
+
+function SayIt() {
+    var s = "Hello, this is a sample text."; // Replace with the text you want to convert to speech.
+
+    if (s == "") {
+        txtMsg.focus();
+        return;
+    }
+
+    TextToSpeech(s);
+}
+
+// The existing TextToSpeech function from the provided code
+function TextToSpeech(s) {
+    if (chkMute.checked) return;
+
+    if (selVoices.length > 0 && selVoices.selectedIndex != -1) {
+        sVoiceId = selVoices.value;
+    }
+
+    spMsg.innerHTML = "Eleven labs text-to-speech...";
+
+    var oHttp = new XMLHttpRequest();
+    oHttp.open("POST", "https://api.elevenlabs.io/v1/text-to-speech/" + sVoiceId);
+    oHttp.setRequestHeader("Accept", "audio/mpeg");
+    oHttp.setRequestHeader("Content-Type", "application/json");
+    oHttp.setRequestHeader("xi-api-key", ELEVEN_LABS_API_KEY);
+
+    oHttp.onload = function () {
+        if (oHttp.readyState === 4) {
+            spMsg.innerHTML = "";
+
+            var oBlob = new Blob([this.response], { "type": "audio/mpeg" });
+            var audioURL = window.URL.createObjectURL(oBlob);
+            var audio = new Audio();
+            audio.src = audioURL;
+            audio.play();
+        }
+    };
+
+    var data = {
+        text: s,
+        voice_settings: { stability: 0, similarity_boost: 0 }
+    };
+
+    oHttp.responseType = "arraybuffer";
+    oHttp.send(JSON.stringify(data));
 }
 
 function playback()
