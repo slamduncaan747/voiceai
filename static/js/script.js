@@ -105,7 +105,7 @@ function sendTranscriptToBackend(transcript) {
   });
 }
 function sendTranscriptToBackendGetAudio(transcript) {
-    const backendUrl = 'https://duncan.pythonanywhere.com/sendStringForMp3';
+    const backendUrl = 'https://duncanvoiceai.onrender.com/sendStringForMp3';
     const data = { message: transcript };
 
     fetch(backendUrl, {
