@@ -8,5 +8,4 @@ pygame
 ffmpeg
 pydub
 elevenlabs
-tempfile
 pyttsx3
