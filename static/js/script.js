@@ -1,4 +1,4 @@
-let recognition;
+Llet recognition;
 let isRecording = false;
 let recordedChunks = [];
 let timer;
@@ -9,7 +9,7 @@ const audioPlayer = document.getElementById('audioPlayer');
 const ctx = new AudioContext();
 let audio;
 let audioSource;
-var OPENAI_API_KEY = ${{ secrets.YOUR_SECRET_NAME }};
+var OPENAI_API_KEY = ${{ secrets.OPENAI_KEY }};
 var ELEVEN_LABS_API_KEY = "ebc13dfa297853586372a1acf0b80c1b";
 var sVoiceId = "21m00Tcm4TlvDq8ikWAM"; // Rachel
 var bSpeechInProgress = false;
