@@ -1,0 +1,15 @@
+Flask
+Gunicorn
+flask_cors
+gtts
+openai
+requests
+json
+os
+io
+pygame
+ffmpeg
+pydub
+elevenlabs
+tempfile
+pyttsx3
