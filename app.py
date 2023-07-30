@@ -199,7 +199,7 @@ def generate_and_stream_audio(text):
 
 def process_input(textin):
     url = "https://api.openai.com/v1/chat/completions"
-    api_key = "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"
+    api_key = ${{ secrets.YOUR_SECRET_NAME }}
     print(api_key)# Replace with your actual OpenAI API key
 
     data = {
