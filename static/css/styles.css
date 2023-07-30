@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+    height: 100%;
+}
+
+.container {
+    text-align: center;
+    margin-top: 50px;
+    height: 100%;
+}
+
+button {
+    margin: 5px;
+    width: 200px;
+    border-radius: 30px;
+    border: 0;
+    transition-property: all;
+    transition-duration: .5s;
+    position: relative;
+    top: 80%;
+}
+button:hover {
+    transform: scale(1.2)
+}
+
+#audioPlayer{
+   // visibility: hidden;
+}
+
+
