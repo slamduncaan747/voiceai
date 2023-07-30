@@ -55,7 +55,7 @@ function stopRecording() {
   const finalTranscript = responseText.innerText.trim();
   // Send the final transcript to the backend
   if (finalTranscript !== '') {
-    sendTranscriptToBackendGetAudio(finalTranscript);
+    sendTranscriptToBackend(finalTranscript);
     console.log(finalTranscript)
   }
 }
