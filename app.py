@@ -126,6 +126,22 @@ def receive_string_from_frontend_for_mp3():
         "audio_file_path": "/output.mp3"
     })
 
+@app.route('/sendString', methods=['POST'])
+def receive_string_from_frontend_for_mp3():
+    data = request.get_json()
+    message_from_frontend = data.get('message', '')
+    print(message_from_frontend)
+    response = process_input(message_from_frontend)
+    print(response)
+
+    #generate_and_stream_audio(response);
+    #path = text_to_speech(response)
+    print(path)
+    return jsonify({
+        "success": True,
+        "response": response
+    })
+
 @app.route('/')
 def index():
     return render_template('index.html')
